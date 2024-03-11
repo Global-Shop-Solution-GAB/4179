@@ -1,0 +1,624 @@
+Program.Sub.ScreenSU.Start
+Gui.SS_Form1..create
+Gui.SS_Form1..caption("Select Date Range")
+Gui.SS_Form1..size(4135,1825)
+Gui.SS_Form1..minx(0)
+Gui.SS_Form1..miny(0)
+Gui.SS_Form1..position(0,0)
+Gui.SS_Form1..event(UnLoad,UNLOAD)
+Gui.SS_Form1..alwaysontop(False)
+Gui.SS_Form1..fontname("Arial")
+Gui.SS_Form1..fontsize(8)
+Gui.SS_Form1..forecolor(0)
+Gui.SS_Form1..fontstyle(,,,)
+Gui.SS_Form1..BackColor(-2147483633)
+Gui.SS_Form1..controlbox(True)
+Gui.SS_Form1..maxbutton(False)
+Gui.SS_Form1..minbutton(False)
+Gui.SS_Form1..mousepointer(0)
+Gui.SS_Form1..moveable(True)
+Gui.SS_Form1..sizeable(False)
+Gui.SS_Form1..ShowInTaskBar(True)
+Gui.SS_Form1..titlebar(True)
+Gui.SS_Form1.lbl_dtpStart.create(label,"Start Date",True,1800,200,1,100,135,True,0,Arial,8,-2147483633,0)
+Gui.SS_Form1.lbl_dtpStart.defaultvalue("")
+Gui.SS_Form1.lbl_dtpStart.controlgroup(0)
+Gui.SS_Form1.dtpStart.create(datepicker)
+Gui.SS_Form1.dtpStart.visible(True)
+Gui.SS_Form1.dtpStart.size(1800,345)
+Gui.SS_Form1.dtpStart.zorder(0)
+Gui.SS_Form1.dtpStart.position(100,335)
+Gui.SS_Form1.dtpStart.enabled(True)
+Gui.SS_Form1.dtpStart.checkbox(False)
+Gui.SS_Form1.dtpStart.defaultvalue("")
+Gui.SS_Form1.dtpStart.controlgroup(0)
+Gui.SS_Form1.dtpStart.tabstop(True)
+Gui.SS_Form1.dtpStart.tabindex(1)
+Gui.SS_Form1.lbl_dtpEnd.create(label,"End Date",True,1800,200,1,1985,135,True,0,Arial,8,-2147483633,0)
+Gui.SS_Form1.lbl_dtpEnd.defaultvalue("")
+Gui.SS_Form1.lbl_dtpEnd.controlgroup(0)
+Gui.SS_Form1.dtpEnd.create(datepicker)
+Gui.SS_Form1.dtpEnd.visible(True)
+Gui.SS_Form1.dtpEnd.size(1800,345)
+Gui.SS_Form1.dtpEnd.zorder(0)
+Gui.SS_Form1.dtpEnd.position(1985,335)
+Gui.SS_Form1.dtpEnd.enabled(True)
+Gui.SS_Form1.dtpEnd.checkbox(False)
+Gui.SS_Form1.dtpEnd.defaultvalue("")
+Gui.SS_Form1.dtpEnd.controlgroup(0)
+Gui.SS_Form1.dtpEnd.tabstop(True)
+Gui.SS_Form1.dtpEnd.tabindex(2)
+Gui.SS_Form1.cmdPrint.create(button)
+Gui.SS_Form1.cmdPrint.caption("Print")
+Gui.SS_Form1.cmdPrint.visible(True)
+Gui.SS_Form1.cmdPrint.size(1000,360)
+Gui.SS_Form1.cmdPrint.zorder(0)
+Gui.SS_Form1.cmdPrint.position(100,850)
+Gui.SS_Form1.cmdPrint.enabled(True)
+Gui.SS_Form1.cmdPrint.fontname("Arial")
+Gui.SS_Form1.cmdPrint.fontsize(8)
+Gui.SS_Form1.cmdPrint.event(Click,PRINT)
+Gui.SS_Form1.cmdPrint.defaultvalue("")
+Gui.SS_Form1.cmdPrint.controlgroup(0)
+Gui.SS_Form1.cmdPrint.tabstop(True)
+Gui.SS_Form1.cmdPrint.tabindex(3)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Variable.UDT.uInvoices.Define("Invoice",String,Invoice)
+Variable.UDT.uInvoices.Define("Order_No",String,Order_No)
+Variable.UDT.uInvoices.Define("Order_Line",String,Order_Line)
+Variable.UDT.uInvoices.Define("Date_Shipped",String,Date_Shipped)
+Variable.UDT.uInvoices.Define("Date_Invoice",String,Date_INvoice)
+Variable.UDT.uInvoices.Define("Ship_To",String,Customer_Ship)
+Variable.UDT.uInvoices.Define("Address1_Ship",String,Address1_Ship)
+Variable.UDT.uInvoices.Define("City_Ship",String,City_Ship)
+Variable.UDT.uInvoices.Define("State_Ship",String,State_Ship)
+Variable.UDT.uInvoices.Define("Part",String,Part)
+Variable.UDT.uInvoices.Define("Serial",String,Serial)
+Variable.UDT.uInvoices.Define("CREDIT_MEMO_FLAG",String,CREDIT_MEMO_FLAG)
+Variable.uGlobal.uInvoices.Declare("uInvoices")
+Variable.UDT.uSerials.Define("Part",String,Part)
+Variable.UDT.uSerials.Define("Serial",String,Serial)
+Variable.UDT.uSerials.Define("Start_Serial",String,SERIAL_START)
+Variable.UDT.uOutput.Define("Invoice",String,Invoice)
+Variable.UDT.uOutput.Define("Order_No",String,Order_no)
+Variable.UDT.uOutput.Define("Order_Line",String,Order_Line)
+Variable.UDT.uOutput.Define("Ship_To",String,Ship_To)
+Variable.UDT.uOutput.Define("Address1_Ship",String,Address1_Ship)
+Variable.UDT.uOutput.Define("City_Ship",String,City_Ship)
+Variable.UDT.uOutput.Define("State_Ship",String,State_Ship)
+Variable.UDT.uOutput.Define("Date_Shipped",String,Date_Shipped)
+Variable.UDT.uOutput.Define("Menu_Serial",String,Menu_Serial)
+Variable.UDT.uOutput.Define("Kit_Serial",String,Kit_Serial)
+Variable.UDT.uOutput.Define("Cover_Serial",String,Cover_Serial)
+Variable.UDT.uOutput.Define("Display_Serial",String,Display_Serial)
+Variable.UDT.uOutput.Define("NFC_Serial",String,NFC_Serial)
+Variable.UDT.uOutput.Define("INS_Serial",String,INS_Serial)
+Variable.UDT.uOutput.Define("PS_Serial",String,PS_Serial)
+Variable.UDT.uOutput.Define("BIRUNID",Long,BIRUNID)
+Variable.UDT.uOutput.Define("TRMNL",String,TRMNL)
+Variable.UDT.uOutput.Define("Date_Invoice",String,Date_Invoiced)
+Variable.UDT.uOutput.Define("CREDIT_MEMO_FLAG",String,CREDIT_MEMO_FLAG)
+Variable.uGlobal.uOutput.Declare("uOutput")
+Variable.uGlobal.uSerials.Declare("uSerials")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'CODED BY BJL 5/20/2014
+'CODED FOR FABCON QUOTE 5687
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+'ERROR HANDLING ABOVE
+
+'DECLARE VARIABLES
+V.Local.sError.Declare(String)
+
+'OPEN DB CONNECTION
+F.ODBC.Connection!CONX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass,7200)
+
+F.ODBC.Connection!CONX.Execute("delete from gcg_bi_serial_inv")
+
+'SHOW SCREEN
+Gui.SS_Form1..Show
+
+'TERMINATE SUBROUTINE
+F.Intrinsic.Control.ExitSub
+
+'ERROR HANDLING BELOW
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_BI_SERIAL_BY_INVOICE.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.PRINT.Start
+F.Intrinsic.Control.SetErrorHandler("PRINT_Err")
+F.Intrinsic.Control.ClearErrors
+'ERROR HANDLING ABOVE
+
+'DECLARE VARIABLES
+V.Local.sError.Declare(String)
+V.Local.sSQL.Declare(String)
+V.Local.sStartDate.Declare(String)
+V.Local.sEndDate.Declare(String)
+V.Local.sParts.Declare(String)
+V.Local.iBIRUNID.Declare(Long)
+V.Local.iLogID.Declare(Long)
+V.Local.iRPTID.Declare(Long)
+
+'HIDE SCREEN
+Gui.SS_Form1..Visible(False)
+F.Intrinsic.UI.InvokeWaitDialog("Preparing Raw Data for Manipulation","Please Wait")
+
+'FORMAT SCREEN DATES TO PERVASIVE FRIENDLY
+F.Intrinsic.String.Format(V.Screen.SS_Form1!dtpStart.Value,"YYYY-MM-DD",V.Local.sStartDate)
+F.Intrinsic.String.Format(V.Screen.SS_Form1!dtpEnd.Value,"YYYY-MM-DD",V.Local.sEndDate)
+
+'CREATE PARTS LIST STRING
+'V.Local.sParts.Set("('FC-6115', 'FC-6115-LBR-KIT', 'FC-6115-200', 'FC-6115-TOUCH', 'FC-6115-210-3', 'FC-6115-210-1','32PSF108')")
+V.Local.sParts.Set("('FC-6632P', 'FC-6115-LBR-KIT', 'FC-6115-200', 'FC-6115-TOUCH', 'FC-6115-210-3', 'FC-6115-210-1','32PSF108')")
+
+
+'CLEAR UDTS
+V.uGlobal.uInvoices.Redim(-1,-1)
+V.uGlobal.uOutput.Redim(-1,-1)
+V.uGlobal.uSerials.Redim(-1,-1)
+
+'LOAD INVOICES UDT WITH INVOICES
+
+V.Local.sSQL.Set("select O.INVOICE, O.CREDIT_MEMO_FLAG, O.ORDER_NO, left(O.ORDER_LINE, 3) as ORDER_LINE, O.CUSTOMER_SHIP, O.ADDRESS1_SHIP, O.CITY_sHIP, O.STATE_SHIP,RTRIM(LEFT(O.PART, 17)) AS PART,O.DATE_INVOICE, O.DATE_SHIPPED, W.SERIAL from V_order_hist_Line AS O LEFT JOIN V_WARRANTY AS W ON O.INVOICE = W.INVOICE AND O.ORDER_NO = W.ORDER_NO AND Left(O.ORDER_LINE,3) = W.ORDER_LINE")
+
+'if date is for one date set Sql for invoice date = 'DATE' else do range of date between 'Start DATE' and 'End DATE'
+F.Intrinsic.Control.If(V.Screen.SS_Form1!dtpStart.Value,=,V.Screen.SS_Form1!dtpEnd.Value)
+'	F.Intrinsic.String.Concat(V.Local.sSQL," WHERE DATE_SHIPPED = '",V.Local.sStartDate,"' AND rtrim(left(o.PART, 17)) IN ",V.Local.sParts,V.Local.sSQL)
+	'changed DATE_SHIPPED to DATE_INVOICE
+	F.Intrinsic.String.Concat(V.Local.sSQL," WHERE DATE_INVOICE = '",V.Local.sEndDate,"' AND rtrim(left(o.PART, 17)) IN ('FC-6632P')",V.Local.sSQL)
+F.Intrinsic.Control.Else
+'	F.Intrinsic.String.Concat(V.Local.sSQL," WHERE DATE_SHIPPED BETWEEN '",V.Local.sStartDate,"' AND '",V.Local.sEndDate,"' AND rtrim(left(o.PART, 17)) IN ",V.Local.sParts,V.Local.sSQL)
+	'changed DATE_SHIPPED to DATE_INVOICE
+	F.Intrinsic.String.Concat(V.Local.sSQL," WHERE DATE_INVOICE BETWEEN '",V.Local.sStartDate,"' AND '",V.Local.sEndDate,"' AND rtrim(left(o.PART, 17)) IN ('FC-6632P')",V.Local.sSQL)
+
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!CONX.OpenLocalRecordsetRO("rst",V.Local.sSQL)
+F.Intrinsic.Control.If(V.ODBC.CONX!rst.EOF,=,True)
+	F.Intrinsic.UI.Msgbox("No Records Found for Date Range","Error")
+	F.Intrinsic.UI.CloseWaitDialog
+	Gui.SS_Form1..Visible(True)
+	F.ODBC.CONX!rst.Close
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.Variable.LoadUDTFromRecordset("cONX","RST","V.uGlobal.uInvoices",False)
+F.Intrinsic.Control.EndIf
+F.ODBC.CONX!rst.Close
+
+'LOAD SERIALS UDT WITH SERIALS
+F.Intrinsic.String.Concat("SELECT SERIAL_START, SERIAL, RTRIM(LEFT(PART, 17)) AS PART FROM V_JOB_SERIAL WHERE RTRIM(LEFT(PART,17)) IN ",V.Local.sParts,V.Local.sSQL)
+F.ODBC.Connection!CONX.OpenLocalRecordsetRO("RST",V.Local.sSQL)
+F.Intrinsic.Control.If(V.ODBC.CONX!rst.EOF,=,False)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("cONX","RST","V.UGLOBAL.USERIALS",False)
+F.Intrinsic.Control.EndIf
+F.ODBC.CONX!rst.Close
+
+'GET BIRUNID, REPORT ID (CHECK IF IT EXISTS), AND LOG ID
+F.Global.BI.GetRunId(V.Local.iBIRUNID)
+F.Global.BI.StartLogging(V.Local.iBIRUNID,-1,-1,"",V.Local.iLogID)
+
+'CALL SUBROUTINE TO MERGE DATA FOR REPORT
+F.Intrinsic.Control.CallSub(Mergedata)
+'CALL SUBROUTINE TO SAVE DATA TO BI TABLE
+F.Intrinsic.UI.ChangeWaitStatus("Data Manuipulation Complete. Saving Data to BI Table")
+F.Intrinsic.Control.CallSub(Save2bi,"BIRUNID",V.Local.iBIRUNID)
+
+'STOP BI LOGGING
+F.Global.BI.stoplogging(V.Local.iLogID)
+
+'CALL SUBROUTINE TO CALL BI REPORT
+F.Intrinsic.UI.ChangeWaitStatus("Calling BI Report")
+F.Intrinsic.Control.CallSub(Callbi,"BIRUNID",V.Local.iBIRUNID,"LOGID",V.Local.iLogID,"RPTID",V.Local.iRPTID)
+'CALL SUBROUTINE TO TERMINATE PROGRAM
+F.Intrinsic.UI.CloseWaitDialog
+F.Intrinsic.Control.CallSub(Unload)
+
+'TERMINATE SUBROUTINE
+F.Intrinsic.Control.ExitSub
+
+'ERROR HANDLING BELOW
+F.Intrinsic.Control.Label("PRINT_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_BI_SERIAL_BY_INVOICE.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.PRINT.End
+
+Program.Sub.UNLOAD.Start
+'FIRED UPON CLOSING PROGRAM
+
+'CLOSE DB CONNECTION
+F.ODBC.Connection!CONX.Close
+
+'TERMINATE PROGRAM
+F.Intrinsic.Control.End
+
+Program.Sub.UNLOAD.End
+
+Program.Sub.MergeData.Start
+F.Intrinsic.Control.SetErrorHandler("MergeData_Err")
+F.Intrinsic.Control.ClearErrors
+'ERROR AHNDLING ABOVE
+'F.Intrinsic.Debug.InvokeDebugger
+'F.Intrinsic.Debug.Stop
+
+'DECLARE VARIABLES
+V.Local.sError.Declare(String)
+V.Local.i.Declare(Long)
+V.Local.sRet.Declare(String)
+V.Local.iAdd.Declare(Long)
+V.Local.iM.Declare(Long)
+V.Local.iMInc.Declare(Long)
+'counter added to loop through the invoices and prefix with CM
+V.Local.i2.Declare(Long)
+V.Local.sTempPart.Declare(String)
+
+'INITIALIZE OUTPUT UDT COUNTER VARIABLE
+V.Local.iAdd.Set(-1)
+
+'LOOP THROUGH INVOICES AND BEGIN GETTING DATA
+F.Intrinsic.Control.For(V.Local.i,V.uGlobal.uInvoices.LBound,V.uGlobal.uInvoices.UBound,1)
+	F.Intrinsic.UI.ChangeWaitStatus("Processing Data",V.Local.i,V.uGlobal.uInvoices.LBound,V.uGlobal.uInvoices.UBound)
+	F.Intrinsic.Control.If(V.Local.iAdd,=,-1)
+		V.uGlobal.uOutput.reDIM(0,0)
+		V.Local.iAdd.Set(0)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+		V.uGlobal.uOutput.RedimPreserve(0,V.Local.iAdd)
+	F.Intrinsic.Control.EndIf
+	V.uGlobal.uOutput(V.Local.iAdd)!Invoice.Set(V.uGlobal.uInvoices(V.Local.i)!Invoice)
+	V.uGlobal.uOutput(V.Local.iAdd)!Order_No.Set(V.uGlobal.uInvoices(V.Local.i)!Order_No)
+	V.uGlobal.uOutput(V.Local.iAdd)!Order_Line.Set(V.uGlobal.uInvoices(V.Local.i)!Order_Line)
+	V.uGlobal.uOutput(V.Local.iAdd)!Ship_To.Set(V.uGlobal.uInvoices(V.Local.i)!Ship_To)
+	V.uGlobal.uOutput(V.Local.iAdd)!Address1_Ship.Set(V.uGlobal.uInvoices(V.Local.i)!Address1_Ship)
+	V.uGlobal.uOutput(V.Local.iAdd)!City_Ship.Set(V.uGlobal.uInvoices(V.Local.i)!City_Ship)
+	V.uGlobal.uOutput(V.Local.iAdd)!State_Ship.Set(V.uGlobal.uInvoices(V.Local.i)!State_Ship)
+	V.uGlobal.uOutput(V.Local.iAdd)!Date_Shipped.Set(V.uGlobal.uInvoices(V.Local.i)!Date_Shipped)
+	V.uGlobal.uOutput(V.Local.iAdd)!Date_Invoice.Set(V.uGlobal.uInvoices(V.Local.i)!Date_Invoice)
+	V.uGlobal.uOutput(V.Local.iAdd)!CREDIT_MEMO_FLAG.Set(V.uGlobal.uInvoices(V.Local.i)!CREDIT_MEMO_FLAG)
+
+	F.Intrinsic.Control.SelectCase(V.uGlobal.uInvoices(V.Local.i)!Part.Trim)
+		'MENU
+		F.Intrinsic.Control.Case("FC-6632P")
+			'MENU SERIAL
+			V.uGlobal.uOutput(V.Local.iAdd)!Menu_Serial.Set(V.uGlobal.uInvoices(V.Local.i)!Serial)
+			'KIT SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Kit_Serial.Set("N/A")
+			
+			'COVER SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uInvoices(V.Local.i)!Serial.Trim,V.uGlobal.uSerials!Part,"FC-6115-200",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(V.Local.iAdd)!Cover_Serial.set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.if(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial.Set(V.uglobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'DISPLAY SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uInvoices(V.Local.i)!Serial.Trim,V.uGlobal.uSerials!Part,"FC-6115-TOUCH",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!Display_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!Display_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'NFC SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial,V.uGlobal.uSerials!Part,"FC-6115-210-3",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'INS SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial,V.uGlobal.uSerials!Part,"FC-6115-210-1",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(V.Local.iAdd)!INS_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'POWER SUPPLY SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uInvoices(V.Local.i)!Serial.Trim,V.uGlobal.uSerials!Part,"32PSF108",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(v.Local.iAdd)!PS_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!PS_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!PS_Serial.Set(V.uGlobal.uSerials(v.local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+'			F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+		'KIT
+		F.Intrinsic.Control.Case("FC-6115-LBR-KIT")
+			'MENU SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Menu_Serial.Set("N/A")
+			'KIT SERIAL
+			V.uGlobal.uOutput(V.Local.iAdd)!Kit_Serial.Set(V.uGlobal.uInvoices(V.Local.i)!Serial.Trim)
+			'COVER SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uInvoices(V.Local.i)!Serial.Trim,V.uGlobal.uSerials!Part,"FC-6115-200",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(V.Local.iAdd)!Cover_Serial.set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.if(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial.Set(V.uglobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'DISPLAY SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uInvoices(V.Local.i)!Serial.Trim,V.uGlobal.uSerials!Part,"FC-6115-TOUCH",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!Display_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!Display_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'NFC SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial,V.uGlobal.uSerials!Part,"FC-6115-210-3",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'INS SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uOutput(v.Local.iAdd)!Cover_Serial,V.uGlobal.uSerials!Part,"FC-6115-210-1",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(V.Local.iAdd)!INS_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'POWER SUPPLY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!PS_Serial.Set("N/A")
+'			F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+		'COVER
+		F.Intrinsic.Control.Case("FC-6115-200")
+			'MENU SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Menu_Serial.Set("N/A")
+			'KIT SERIAL  SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Kit_Serial.Set("N/A")
+			'COVER SERIAL
+			V.uGlobal.uOutput(V.Local.iAdd)!Cover_Serial.Set(V.uGlobal.uInvoices(V.Local.i)!Serial)
+			'DISPLAY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set("N/A")
+			'NFC SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uInvoices(V.Local.i)!Serial.Trim,V.uGlobal.uSerials!Part,"FC-6115-210-3",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!NFC_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'INS SERIAL
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSerials!Start_Serial,V.uGlobal.uInvoices(V.Local.i)!Serial.Trim,V.uGlobal.uSerials!Part,"FC-6115-210-1",V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,=,"")
+				V.uGlobal.uOutput(V.Local.iAdd)!INS_Serial.Set("Not Found")
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet.UBound,>,0)
+					F.Intrinsic.String.Concat(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial,"*",V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial.Set(V.uGlobal.uSerials(v.Local.sRet(0).Trim)!Serial)
+				F.Intrinsic.Control.EndIf
+				V.Local.sRet.Redim(0,0)
+			F.Intrinsic.Control.EndIf
+			'POWER SUPPLY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!PS_Serial.Set("N/A")
+'			F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+		'DISPLAY
+		F.Intrinsic.Control.Case("FC-6115-TOUCH")
+			'MENU SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Menu_Serial.Set("N/A")
+			'KIT SERIAL  SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Kit_Serial.Set("N/A")
+			'COVER SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Cover_Serial.Set("N/A")
+			'DISPLAY SERIAL
+			'V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set(V.uGlobal.uInvoices(V.Local.i)!Serial)
+			V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set("N/A")
+
+			'NFC SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!NFC_Serial.Set("N/A")
+			'INS SERIAL SET TO BLANK
+			V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial.Set("N/A")
+			'POWER SUPPLY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!PS_Serial.Set("N/A")
+'			F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+		'NFC READER
+		F.Intrinsic.Control.Case("FC-6115-210-3")
+			'MENU SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Menu_Serial.Set("N/A")
+			'KIT SERIAL  SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Kit_Serial.Set("N/A")
+			'COVER SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Cover_Serial.Set("N/A")
+			'DISPLAY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set("N/A")
+			'NFC SERIAL
+			V.uGlobal.uOutput(V.Local.iAdd)!NFC_Serial.Set(V.uGlobal.uInvoices(V.Local.i)!Serial)
+			'INS SERIAL SET TO BLANK
+			V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial.Set("N/A")
+			'POWER SUPPLY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!PS_Serial.Set("N/A")
+'			F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+		'INS READER
+		F.Intrinsic.Control.Case("FC-6115-210-1")
+			'MENU SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Menu_Serial.Set("N/A")
+			'KIT SERIAL  SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Kit_Serial.Set("N/A")
+			'COVER SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Cover_Serial.Set("N/A")
+			'DISPLAY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set("N/A")
+			'NFC SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!NFC_Serial.Set("N/A")
+			'INS SERIAL
+			V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial.Set(V.uGlobal.uInvoices(V.Local.i)!Serial)
+			'POWER SUPPLY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!PS_Serial.Set("N/A")
+'			F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+		'POWER SUPPLY
+		F.Intrinsic.Control.Case("32PSF108")
+			'MENU SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Menu_Serial.Set("N/A")
+			'KIT SERIAL  SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Kit_Serial.Set("N/A")
+			'COVER SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Cover_Serial.Set("N/A")
+			'DISPLAY SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!Display_Serial.Set("N/A")
+			'NFC SERIAL SET TO BLANK
+			V.uGlobal.uOutput(V.Local.iAdd)!NFC_Serial.Set("N/A")
+			'INS SERIAL SET TO BLANK
+			V.uGlobal.uOutput(v.Local.iAdd)!INS_Serial.Set("N/A")
+			'POWER SUPPLY SERIAL
+			V.uGlobal.uOutput(V.Local.iAdd)!PS_Serial.Set(V.uGlobal.uInvoices(V.Local.i)!Serial)
+'			F.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+	F.Intrinsic.Control.EndSelect
+F.Intrinsic.Control.Next(V.Local.i)
+
+'TERMINATE SUBROUTINE
+F.Intrinsic.Control.ExitSub
+
+'ERROR HANDLING BELOW
+F.Intrinsic.Control.Label("MergeData_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_BI_SERIAL_BY_INVOICE.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.MergeData.End
+
+Program.Sub.Save2BI.Start
+F.Intrinsic.Control.SetErrorHandler("Save2BI_Err")
+F.Intrinsic.Control.ClearErrors
+'ERROR HANDLING ABOVE
+
+'DECLARE VARIABLES
+V.Local.sError.Declare(String)
+
+'OPEN RECORDSET TO TABLE
+F.ODBC.Connection!CONX.OpenLocalRecordsetRW("rstSAVE","SELECT * FROM GCG_BI_SERIAL_INV")
+
+'SET ALL BIRUNID AND TRMNL
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uOutput!TRMNL,V.Caller.Terminal)
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uOutput!BIRUNID,V.Args.BIRUNID)
+
+'SAVE DATA TO RECORDSET
+F.Intrinsic.Variable.SaveUDTToRecordset("CONX","rstSave","V.uglobal.uOutput")
+
+'TERMINATE SUBROUTINE
+F.Intrinsic.Control.ExitSub
+
+'ERROR HANDLING BELOW
+F.Intrinsic.Control.Label("Save2BI_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_BI_SERIAL_BY_INVOICE.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Save2BI.End
+
+Program.Sub.CallBI.Start
+F.Intrinsic.Control.SetErrorHandler("CallBI_Err")
+F.Intrinsic.Control.ClearErrors
+'ERROR HANDLING ABOVE
+
+'DECLARE VARIABLES
+V.Local.sError.Declare(String)
+V.Local.sParams.Declare(String)
+V.Local.iRet.Declare(Long)
+
+'WRITE STRING OF PARAMS FOR CRYSTAL REPORT
+F.Intrinsic.String.Concat(V.Args.BIRUNID,"*!*",V.CALLER.Terminal,"*!*",V.screen.ss_Form1!dtpstart.value,"*!*",V.screen.ss_Form1!dtpEnd.value,V.Local.sParams)
+
+'CALL BI REPOT
+F.Global.BI.RunReportPreProcessor(v.Args.BIRUNID,v.Args.LogID,"BIRUNID*!*TRMNL*!*StartDate*!*EndDate",v.Local.sParams,"",-1,False,"",-1,"",-1,"","",v.Local.iRet)
+
+'TERMINATE SUBROUTINE
+F.Intrinsic.Control.ExitSub
+
+'ERROR HANDLING BELOW
+F.Intrinsic.Control.Label("CallBI_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_BI_SERIAL_BY_INVOICE.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.CallBI.End
+
+Program.Sub.Comments.Start
+${$0$}$GCG_BI_SERIAL_BY_INVOICE$}$BLEFLER$}$5/20/2014$}$False
+Program.Sub.Comments.End
+
+Program.Sub.ScreenSS.Start
+SS_Form1{{CAPTION::Select Date Range
+SS_Form1.CTRL{{NAME::dtpStart\\TYPE::6\\CAPTION::Start Date\\TABSTOP::1\\GROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::dtpEnd\\TYPE::6\\CAPTION::End Date\\TABSTOP::2\\GROUP::1\\BROWSER::0\\SIZE::1
+SS_Form1.CTRL{{NAME::cmdPrint\\TYPE::5\\CAPTION::Print\\TABSTOP::3\\GROUP::2\\BROWSER::0\\SIZE::1
+
+Program.Sub.ScreenSS.End
+
